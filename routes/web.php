@@ -32,4 +32,7 @@ Route::get('/{workspace}/projects', function () {
     return Inertia::render('Projects');
 })->middleware(['auth', 'verified'])->name('projects');
 
+Route::get('/users/{user}', [\App\Http\Controllers\UserController::class, 'edit'])->middleware('auth')->name('user.edit');
+Route::post('/users/{user}', [\App\Http\Controllers\UserController::class, 'update'])->middleware('auth')->name('user.update');
+
 require __DIR__.'/auth.php';

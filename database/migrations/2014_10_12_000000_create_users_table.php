@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('workspace_id')->nu;
+            $table->foreignId('workspace_id');
+            $table->string('avatar_path')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

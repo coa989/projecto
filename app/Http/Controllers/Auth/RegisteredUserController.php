@@ -40,13 +40,22 @@ class RegisteredUserController extends Controller
             $workspace = Workspace::create();
         }
 
+        $path = null;
+
+        if ($request->file('avatar')) {
+            $path = $request->file('avatar')->store('avatars');
+        }
+
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'workspace_id' => $workspace->id ?? $request->workspace_id
+            'workspace_id' => $workspace->id ?? $request->workspace_id,
+            'avatar_path' => $path
         ]);
+
+        echo asset('storage/'.$path);
 
         event(new Registered($user));
 

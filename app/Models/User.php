@@ -22,7 +22,8 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
-        'workspace_id'
+        'workspace_id',
+        'avatar_path'
     ];
 
     /**

@@ -32,6 +32,11 @@
                                 })" :active="route().current('projects')">
                                     Projects
                                 </BreezeNavLink>
+                                <BreezeNavLink :href="route('members', {
+                                    'workspace': $page.props.auth.user.workspace_id
+                                })" :active="route().current('members')">
+                                    People
+                                </BreezeNavLink>
                             </div>
                         </div>
 

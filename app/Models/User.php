@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'workspace_id',
+        'workspace_role_id',
         'avatar_path'
     ];
 
@@ -44,4 +45,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function workspace()
+    {
+        return $this->belongsTo(Workspace::class);
+    }
 }

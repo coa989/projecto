@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUserRequest;
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Workspace;
 use App\Providers\RouteServiceProvider;
@@ -36,8 +37,10 @@ class RegisteredUserController extends Controller
      */
     public function store(RegisterUserRequest $request)
     {
+        $roleId = Role::where('name', 'member')->first()->id;
         if (!$request->workspace_id) {
             $workspace = Workspace::create();
+            $roleId = Role::where('name', 'owner')->first()->id;
         }
 
         $path = null;
@@ -52,6 +55,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'workspace_id' => $workspace->id ?? $request->workspace_id,
+            'workspace_role_id' => $roleId,
             'avatar_path' => $path
         ]);
 

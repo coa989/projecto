@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class UserController extends Controller
@@ -16,7 +17,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+
+        return Inertia::render('User/Index', [
+            'users' => $users
+        ]);
     }
 
     /**
@@ -75,6 +80,8 @@ class UserController extends Controller
 
         if ($request->file('avatar')) {
             $path = $request->file('avatar')->store('avatars');
+
+            Storage::delete($user->avatar_path);
 
             $user->update([
                 'avatar_path' => $path

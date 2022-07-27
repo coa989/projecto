@@ -26,8 +26,7 @@ class StoreInvitationRequest extends FormRequest
     {
         return [
             'email' => ['required', 'email'],
-            'role' => ['required', 'string', Rule::in(['owner', 'member', 'client'])],
-            'workspace_id' => ['required', 'exists:workspaces,id']
+            'role' => ['required', 'string', Rule::in(['owner', 'member', 'client'])]
         ];
     }
 }

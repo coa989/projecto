@@ -43,32 +43,33 @@
                                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                        required>
                             </div>
-                            <h2 class="mt-6">WHAT WILL BE THEIR ROLE IN THE SYSTEM?</h2>
+                            <h2 class="mt-6">WHAT WILL BE HIS/HER ROLE IN THE SYSTEM?</h2>
 
                             <fieldset class="mt-6">
                                 <div class="flex items-center mb-4">
-                                    <input id="country-option-1" type="radio" name="roles" value="owner"
-                                           class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
-                                           checked="">
-                                    <label for="country-option-1"
+                                    <input v-model="form.role" id="owner" type="radio"
+                                           value="owner"
+                                           class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="owner"
                                            class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                         Owner
                                     </label>
                                 </div>
 
                                 <div class="flex items-center mb-4">
-                                    <input id="country-option-2" type="radio" name="roles" value="member"
+                                    <input v-model="form.role" id="member" type="radio"
+                                           value="member"
                                            class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="country-option-2"
+                                    <label for="member"
                                            class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                         Member
                                     </label>
                                 </div>
 
                                 <div class="flex items-center mb-4">
-                                    <input id="country-option-3" type="radio" name="roles" value="client"
+                                    <input v-model="form.role" id="client" type="radio" value="client"
                                            class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="country-option-3"
+                                    <label for="client"
                                            class="block ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                         Client
                                     </label>

@@ -43,8 +43,7 @@
                                      alt="Rounded avatar">
                                 <img v-else
                                      class="w-12 h-12 rounded-full"
-                                     src="https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png"
-                                     alt="roger berry - avatar placeholder PNG image with transparent background@toppng.com">
+                                     :src="'https://eu.ui-avatars.com/api/?name='+user.first_name+'+'+user.last_name">
                                 <div class="ml-4">
                                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                            for="user_avatar">Profile Photo</label>

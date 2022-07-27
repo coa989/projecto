@@ -59,8 +59,6 @@ class RegisteredUserController extends Controller
             'avatar_path' => $path
         ]);
 
-        echo asset('storage/'.$path);
-
         event(new Registered($user));
 
         Auth::login($user);

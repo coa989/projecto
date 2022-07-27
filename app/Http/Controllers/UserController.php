@@ -3,24 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserUpdateRequest;
+use App\Models\Invitation;
 use App\Models\User;
+use App\Models\Workspace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Workspace $workspace)
     {
         $users = User::all();
 
+        $pending = Invitation::query()
+            ->where('workspace_id', $workspace->id)
+            ->where('status', false)
+            ->get();
+
         return Inertia::render('User/Index', [
-            'users' => $users
+            'users' => $users,
+            'pending' => $pending
         ]);
     }
 
@@ -81,7 +84,9 @@ class UserController extends Controller
         if ($request->file('avatar')) {
             $path = $request->file('avatar')->store('avatars');
 
-            Storage::delete($user->avatar_path);
+            if ($user->avatar_path) {
+                Storage::delete($user->avatar_path);
+            }
 
             $user->update([
                 'avatar_path' => $path

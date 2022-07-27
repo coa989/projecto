@@ -30,7 +30,7 @@
         </template>
 
         <div class="py-12">
-            <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+            <div class="w-full mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
                         <h5 class="text-center my-3">Active Members</h5>
@@ -62,7 +62,6 @@
                                 <td class="py-4 px-6">
                                     <div class="flex items-center">
                                         {{user.role}}
-
                                     </div>
                                 </td>
                             </tr>
@@ -80,18 +79,19 @@
                                     class="flex items-center py-4 px-6 text-gray-900 whitespace-nowrap dark:text-white">
                                     <img
                                         class="w-12 h-12 rounded-full"
-                                        :src="'https://eu.ui-avatars.com/api/?name='+pendingUser.email">
+                                        :src="'https://eu.ui-avatars.com/api/?name='+pendingUser.first_name+'+'+pendingUser.last_name">
                                     <div class="pl-3">
-<!--                                        <div class="text-base font-thin"> Invited by {{pendingUser.invitedByFirstName+' '+pendingUser.invitedByLastName}} {{pendingUser.invitedAt}}, not logged in yet.-->
-<!--                                            <Link>Resend invitation mail</Link>-->
-<!--                                        </div>-->
+                                        <div class="text-base font-semibold">{{pendingUser.first_name + ' ' +
+                                            pendingUser.last_name}}
+                                        </div>
                                     </div>
                                 </th>
                                 <td class="py-4 px-6">
-                                    Invited by {{pendingUser.invitedByFirstName+' '+pendingUser.invitedByLastName}} {{pendingUser.invitedAt}}, not logged in yet.
+                                    Invited by {{pendingUser.invitedByFirstName+' '+pendingUser.invitedByLastName}}
+                                    {{pendingUser.invitedAt}}, not logged in yet.
                                     <Link>Resend invitation mail</Link>
                                 </td>
-                                <td class="py-4 px-12">
+                                <td class="py-4 px-6">
                                     <div class="flex items-center">
                                         {{pendingUser.role}}
                                     </div>

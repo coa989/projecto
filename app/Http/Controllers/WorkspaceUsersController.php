@@ -6,7 +6,6 @@ use App\Models\Invitation;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Workspace;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class WorkspaceUsersController extends Controller
@@ -17,7 +16,7 @@ class WorkspaceUsersController extends Controller
 
         $pendingUsers = Invitation::query()
             ->where('workspace_id', $workspace->id)
-            ->where('status', false)
+            ->whereNull('registered_at')
             ->get();
 
         return Inertia::render('User/Index', [
@@ -30,6 +29,8 @@ class WorkspaceUsersController extends Controller
                 'role' => Role::query()->find($user->workspace_role_id)->name
             ]),
             'pendingUsers' => $pendingUsers->map(fn($pendingUser) => [
+                'first_name' => $pendingUser->first_name,
+                'last_name' => $pendingUser->last_name,
                 'email' => $pendingUser->email,
                 'role' => Role::query()->find($pendingUser->workspace_role_id)->name,
                 'invitedByFirstName' => User::query()->find($pendingUser->user_id)->first_name,
@@ -37,10 +38,5 @@ class WorkspaceUsersController extends Controller
                 'invitedAt' => $pendingUser->created_at->diffForHumans()
             ])
         ]);
-    }
-
-    public function invite(Workspace $workspace)
-    {
-
     }
 }

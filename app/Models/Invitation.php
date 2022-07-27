@@ -13,6 +13,10 @@ class Invitation extends Model
         'user_id',
         'workspace_id',
         'workspace_role_id',
-        'email'
+        'email',
+        'invitation_token',
+        'registered_at',
+        'first_name',
+        'last_name'
     ];
 }

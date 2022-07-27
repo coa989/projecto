@@ -22,14 +22,21 @@ class InvitationController extends Controller
         $role = Role::query()
             ->where('name', $request->role)->first()->id;
 
-        Invitation::query()
+        $invitation = Invitation::query()
             ->create([
                 'user_id' => Auth::id(),
                 'workspace_id' => $workspace->id,
                 'workspace_role_id' => $role,
-                'email' => $request->email
+                'email' => $request->email,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'invitation_token' => substr(md5(rand(0, 9) . $request->email . time()), 0, 32)
             ]);
 
-        Mail::to($request->email)->send(new \App\Mail\Invitation(Auth::user()));
+        Mail::to($request->email)->send(new \App\Mail\Invitation($invitation));
+
+        return redirect()->route('members', [
+            'workspace' => $workspace
+        ]);
     }
 }

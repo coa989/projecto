@@ -8,6 +8,8 @@
     // })
 
     const form = useForm({
+        first_name: '',
+        last_name: '',
         email: '',
         role: '',
     });
@@ -34,13 +36,29 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
                         <h2>WHO DO TOU WANT TO INVITE?</h2>
-                        <h4 class="mt-4 mb-4">Enter Email</h4>
                         <form @submit.prevent="submit">
+                            <div class="mb-2">
+                                <label for="first_name"
+                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                <span class="font-medium text-sm text-gray-700">First Name</span>
+                                <input v-model="form.first_name" type="text" id="first_name"
+                                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-5/12 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                       required>
+                            </div>
+                            <div class="mb-2">
+                                <label for="last_name"
+                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                <span class="font-medium text-sm text-gray-700">Last Name</span>
+                                <input v-model="form.last_name" type="text" id="last_name"
+                                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-5/12 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                       required>
+                            </div>
                             <div class="mb-2">
                                 <label for="email"
                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                <span class="font-medium text-sm text-gray-700">Email</span>
                                 <input v-model="form.email" type="email" id="email"
-                                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-5/12 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                        required>
                             </div>
                             <h2 class="mt-6">WHAT WILL BE HIS/HER ROLE IN THE SYSTEM?</h2>

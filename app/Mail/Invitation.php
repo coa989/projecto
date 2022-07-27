@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,15 +12,18 @@ class Invitation extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public $inviter;
+    public $invitation;
+    public $url;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($inviter)
+    public function __construct($invitation)
     {
-        $this->inviter = $inviter;
+        $this->url = config('app.url') . '/invited-register?invitation_token=' . $invitation->invitation_token;
+        $this->invitation = $invitation;
     }
 
     /**
@@ -29,8 +33,9 @@ class Invitation extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('emails.invitation')->with([
-            'inviter' => $this->inviter
+        return $this->markdown('emails.invitation', [
+            'url' => $this->url,
+            'inviter' => User::query()->find($this->invitation->user_id)
         ]);
     }
 }

@@ -25,8 +25,10 @@ class StoreInvitationRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email'],
-            'role' => ['required', 'string', Rule::in(['owner', 'member', 'client'])]
+            'email' => ['required', 'email', 'unique:invitations'],
+            'role' => ['required', 'string', Rule::in(['owner', 'member', 'client'])],
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string']
         ];
     }
 }

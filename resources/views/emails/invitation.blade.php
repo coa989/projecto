@@ -1,8 +1,8 @@
 @component('mail::message')
 # Introduction
 
-{{$inviter->first_name+' '+$inviter->last_name}} has invited you to Project to work together
-@component('mail::button', ['url' => ''])
+{{$inviter->first_name.' '.$inviter->last_name}} has invited you to Projecto to work together
+@component('mail::button', ['url' => $url])
 Button Text
 @endcomponent
 

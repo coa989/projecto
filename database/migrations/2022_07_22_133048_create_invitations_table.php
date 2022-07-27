@@ -18,8 +18,11 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('workspace_id');
             $table->foreignId('workspace_role_id');
-            $table->string('email');
-            $table->boolean('status')->default(0);
+            $table->string('email')->unique();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('invitation_token', 32)->unique()->nullable();
+            $table->timestamp('registered_at')->nullable();
             $table->timestamps();
         });
     }
